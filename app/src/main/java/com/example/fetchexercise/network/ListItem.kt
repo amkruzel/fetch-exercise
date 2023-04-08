@@ -18,7 +18,7 @@ data class ItemNoListId(
 typealias ListId = Int
 typealias ItemMap = MutableMap<ListId, MutableList<ItemNoListId>>
 
-fun sortListItems(list: List<ListItem>): List<ListItem> {
+private fun sortListItems(list: List<ListItem>): List<ListItem> {
     return list.sortedWith(compareBy<ListItem> { it.listId }.thenBy { getIntFromName(it.name) })
 }
 
