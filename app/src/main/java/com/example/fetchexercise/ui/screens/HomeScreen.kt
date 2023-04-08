@@ -48,7 +48,10 @@ private fun ErrorScreen(message: String?, modifier: Modifier = Modifier) {
         modifier = modifier.fillMaxSize()
     ) {
         val error = if (message == "") "" else ": $message"
-        Text(stringResource(id = R.string.loading_failed) + error)
+        Text(
+            stringResource(id = R.string.loading_failed) + error,
+            modifier = Modifier.padding(16.dp),
+        )
     }
 }
 
