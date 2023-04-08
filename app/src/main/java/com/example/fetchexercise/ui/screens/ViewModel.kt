@@ -13,7 +13,7 @@ import java.io.IOException
 
 sealed interface UiState {
     data class Success(val data: ItemMap) : UiState
-    object Error : UiState
+    data class Error(val message: String?) : UiState
     object Loading : UiState
 }
 
@@ -33,7 +33,7 @@ class ViewModel : ViewModel() {
 
                 uiState = UiState.Success(rawListToMap(listResult))
             } catch (e: IOException) {
-                uiState = UiState.Error
+                uiState = UiState.Error(e.message)
             }
         }
     }

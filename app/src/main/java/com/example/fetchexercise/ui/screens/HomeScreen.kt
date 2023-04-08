@@ -26,7 +26,7 @@ fun HomeScreen(
     when (uiState) {
         is UiState.Loading -> LoadingScreen(modifier)
         is UiState.Success -> ResultScreen(uiState.data, modifier)
-        is UiState.Error -> ErrorScreen(modifier)
+        is UiState.Error -> ErrorScreen(uiState.message, modifier)
 
     }
 }
@@ -42,12 +42,13 @@ private fun LoadingScreen(modifier: Modifier = Modifier) {
 }
 
 @Composable
-private fun ErrorScreen(modifier: Modifier = Modifier) {
+private fun ErrorScreen(message: String?, modifier: Modifier = Modifier) {
     Box(
         contentAlignment = Alignment.Center,
         modifier = modifier.fillMaxSize()
     ) {
-        Text(stringResource(R.string.loading_failed))
+        val error = if (message == "") "" else ": $message"
+        Text(stringResource(id = R.string.loading_failed) + error)
     }
 }
 

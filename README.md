@@ -7,7 +7,8 @@ and displays it to the user in an easy to read format.
 
 ## Getting Started
 
-To run this application, clone the repo, open it in Android Studio, and click "Run".
+To run this application, clone the repo, open it in Android Studio, and click "Run". There is no user
+interaction necessary - 
 
 ### Dependencies
 
