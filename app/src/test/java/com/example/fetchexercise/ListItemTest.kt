@@ -1,12 +1,11 @@
 package com.example.fetchexercise
 
-import com.example.fetchexercise.network.ItemMap
-import com.example.fetchexercise.network.ItemNoListId
-import com.example.fetchexercise.network.ListItem
-import com.example.fetchexercise.network.rawListToMap
+import com.example.fetchexercise.model.ItemMap
+import com.example.fetchexercise.model.ItemNoListId
+import com.example.fetchexercise.model.ListItem
+import com.example.fetchexercise.model.rawListToMap
+import org.junit.Assert.assertEquals
 import org.junit.Test
-
-import org.junit.Assert.*
 
 class ListItemTest {
     @Test

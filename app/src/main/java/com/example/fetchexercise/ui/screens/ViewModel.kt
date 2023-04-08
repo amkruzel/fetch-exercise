@@ -5,7 +5,9 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.fetchexercise.network.*
+import com.example.fetchexercise.model.ItemMap
+import com.example.fetchexercise.model.rawListToMap
+import com.example.fetchexercise.network.Api
 import kotlinx.coroutines.launch
 import java.io.IOException
 

@@ -1,25 +1,21 @@
 package com.example.fetchexercise.ui.screens
 
 
+import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.material.Card
+import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.unit.dp
-import androidx.compose.foundation.Image
-import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.material.Card
-import androidx.compose.material.MaterialTheme
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.unit.dp
 import com.example.fetchexercise.R
-import com.example.fetchexercise.network.ItemMap
-import com.example.fetchexercise.network.ItemNoListId
-import com.example.fetchexercise.network.ListId
-import com.example.fetchexercise.ui.theme.FetchExerciseTheme
+import com.example.fetchexercise.model.ItemMap
+import com.example.fetchexercise.model.ItemNoListId
+import com.example.fetchexercise.model.ListId
 
 
 @Composable
@@ -36,7 +32,7 @@ fun HomeScreen(
 }
 
 @Composable
-fun LoadingScreen(modifier: Modifier = Modifier) {
+private fun LoadingScreen(modifier: Modifier = Modifier) {
     Box(
         contentAlignment = Alignment.Center,
         modifier = modifier.fillMaxSize()
@@ -46,7 +42,7 @@ fun LoadingScreen(modifier: Modifier = Modifier) {
 }
 
 @Composable
-fun ErrorScreen(modifier: Modifier = Modifier) {
+private fun ErrorScreen(modifier: Modifier = Modifier) {
     Box(
         contentAlignment = Alignment.Center,
         modifier = modifier.fillMaxSize()
@@ -61,7 +57,7 @@ fun ErrorScreen(modifier: Modifier = Modifier) {
  * The home screen displaying result of fetching the data.
  */
 @Composable
-fun ResultScreen(data: ItemMap, modifier: Modifier = Modifier) {
+private fun ResultScreen(data: ItemMap, modifier: Modifier = Modifier) {
     Box(
         contentAlignment = Alignment.Center,
         modifier = modifier.fillMaxSize()
