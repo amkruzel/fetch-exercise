@@ -10,13 +10,13 @@ import kotlinx.coroutines.launch
 import java.io.IOException
 
 sealed interface UiState {
-    data class Success(val data: String) : UiState
+    data class Success(val data: ItemMap) : UiState
     object Error : UiState
     object Loading : UiState
 }
 
 class ViewModel : ViewModel() {
-    var res: ItemMap = mutableMapOf()
+    var result: ItemMap = mutableMapOf()
     var uiState: UiState by mutableStateOf(UiState.Loading)
         private set
 
@@ -24,14 +24,12 @@ class ViewModel : ViewModel() {
         getData()
     }
 
-    fun getData() {
+    private fun getData() {
         viewModelScope.launch {
             try {
                 val listResult = Api.retrofitService.getData()
-                res = convertRawListToMap(listResult)
-                uiState = UiState.Success(
-                    ""
-                )
+
+                uiState = UiState.Success(rawListToMap(listResult))
             } catch (e: IOException) {
                 uiState = UiState.Error
             }

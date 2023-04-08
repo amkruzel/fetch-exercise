@@ -1,4 +1,4 @@
-package com.example.fetchexercise.network
+package com.example.fetchexercise.model
 
 import androidx.annotation.StringRes
 import kotlinx.serialization.Serializable
@@ -30,13 +30,15 @@ private fun getIntFromName(name: String?): Int {
     return name.split(" ")[1].toIntOrNull() ?: -1
 }
 
-fun convertRawListToMap(list: List<ListItem>): ItemMap {
-    val returnMap: ItemMap = mutableMapOf(1 to arrayListOf(), 2 to arrayListOf(), 3 to arrayListOf(), 4 to arrayListOf())
+fun rawListToMap(list: List<ListItem>): ItemMap {
+    val returnMap: ItemMap = mutableMapOf()
     val sortedList = sortListItems(list)
 
     // we still need to remove the items where name is null or empty
     for (item in sortedList) {
         if (item.name.isNullOrEmpty()) continue
+
+        returnMap.putIfAbsent(item.listId, mutableListOf())
 
         returnMap[item.listId]?.add(ItemNoListId(item.id, item.name))
     }

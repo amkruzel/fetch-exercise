@@ -2,5 +2,4 @@
     <string name="app_name">Fetch Exercise</string>
     <string name="loading">Loading</string>
     <string name="loading_failed">Failed to load</string>
-    <string name="placeholder_result">Placeholder result text</string>
 </resources>

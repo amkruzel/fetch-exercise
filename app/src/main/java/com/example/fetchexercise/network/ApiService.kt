@@ -1,5 +1,6 @@
 package com.example.fetchexercise.network
 
+import com.example.fetchexercise.model.ListItem
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
 import kotlinx.serialization.json.Json
 import okhttp3.MediaType
