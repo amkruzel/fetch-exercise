@@ -5,9 +5,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.fetchexercise.network.Api
-import com.example.fetchexercise.network.ListItem
-import com.example.fetchexercise.network.formatListItems
+import com.example.fetchexercise.network.*
 import kotlinx.coroutines.launch
 import java.io.IOException
 
@@ -18,7 +16,7 @@ sealed interface UiState {
 }
 
 class ViewModel : ViewModel() {
-    var res: List<ListItem> = emptyList()
+    var res: ItemMap = mutableMapOf()
     var uiState: UiState by mutableStateOf(UiState.Loading)
         private set
 
@@ -30,7 +28,7 @@ class ViewModel : ViewModel() {
         viewModelScope.launch {
             try {
                 val listResult = Api.retrofitService.getData()
-                res = formatListItems(listResult)
+                res = convertRawListToMap(listResult)
                 uiState = UiState.Success(
                     ""
                 )

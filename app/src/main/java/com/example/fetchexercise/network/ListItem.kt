@@ -10,23 +10,37 @@ data class ListItem(
     val name: String?
 )
 
-data class Item(
-    @StringRes val id: Int,
-    @StringRes val listId: Int,
+data class ItemNoListId(
+    val id: Int,
     val name: String
 )
 
-fun formatListItems(list: List<ListItem>): List<ListItem> {
-    val listWithoutBlankNames: List<ListItem> = list.filter { it.name !== null && it.name.isNotEmpty() }
+typealias ListId = Int
+typealias ItemMap = MutableMap<ListId, MutableList<ItemNoListId>>
 
-    return listWithoutBlankNames.sortedWith(compareBy<ListItem> { it.listId }.thenBy { it.name })
+fun sortListItems(list: List<ListItem>): List<ListItem> {
+    return list.sortedWith(compareBy<ListItem> { it.listId }.thenBy { getIntFromName(it.name) })
 }
-/*
-// remove null or blank names
 
-// make into a map
+private fun getIntFromName(name: String?): Int {
+    // sort values with null or empty name together - these get removed
+    // when the list is converted to a map
+    if (name.isNullOrEmpty()) return -1
 
-fun removeNullOrBlankNames(list: List<ListItem>): List<Item> {
-
+    return name.split(" ")[1].toIntOrNull() ?: -1
 }
-*/
+
+fun convertRawListToMap(list: List<ListItem>): ItemMap {
+    val returnMap: ItemMap = mutableMapOf(1 to arrayListOf(), 2 to arrayListOf(), 3 to arrayListOf(), 4 to arrayListOf())
+    val sortedList = sortListItems(list)
+
+    // we still need to remove the items where name is null or empty
+    for (item in sortedList) {
+        if (item.name.isNullOrEmpty()) continue
+
+        returnMap[item.listId]?.add(ItemNoListId(item.id, item.name))
+    }
+
+    return returnMap
+}
+
